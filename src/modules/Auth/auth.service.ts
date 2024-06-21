@@ -41,7 +41,11 @@ const login = async (payload: { email: string; password: string }) => {
     "365d",
   );
 
-  return { token, user };
+  return { 
+    token, 
+    user 
+  };
+  
 };
 
 export const authServices = {

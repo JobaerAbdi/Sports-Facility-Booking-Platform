@@ -19,4 +19,4 @@ router.post(
   authControllers.login,
 );
 
-export const AuthRoute = router;
+export const AuthRoutes = router;
