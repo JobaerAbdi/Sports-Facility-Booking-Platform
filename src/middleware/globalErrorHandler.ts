@@ -1,14 +1,13 @@
 import { ErrorRequestHandler } from "express";
-import handleZodError from "../Error/handleZodError";
-import handleValidationError from "../Error/handleValidationError";
-import handleCastError from "../Error/handleCastError";
-import handleDuplicateError from "../Error/handleDuplicateError";
-import AppError from "../Error/AppErrors";
-import { ZodError } from "zod";
 import { TErrorMessages } from "../interface/error";
+import { ZodError } from "zod";
+import handleZodError from "../error/handleZodError";
+import handleValidationError from "../error/handleValidationError";
+import handleCastError from "../error/handleCastError";
+import handleDuplicateError from "../error/handleDuplicateError";
+import AppError from "../error/AppErrors";
 import config from "../config";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
 const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
   let statusCode = 500;
   let message = "Something went wrong";

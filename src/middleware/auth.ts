@@ -1,14 +1,11 @@
 import httpStatus from "http-status";
-import AppError from "../Error/AppErrors";
-import { TUserRole } from "../modules/User/user.interface";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import config from "../config";
-import { User } from "../modules/User/user.model";
 import catchAsync from "../utils/asyncHandler";
+import AppError from "../error/AppErrors";
 
 const auth = (...requiredRoles: TUserRole[]) => {
   return catchAsync(async (req, res, next) => {
-    //check if the token is send from client
     const authToken = req.headers.authorization;
     if (!authToken) {
       throw new AppError(
@@ -17,8 +14,6 @@ const auth = (...requiredRoles: TUserRole[]) => {
       );
     }
     const token = authToken.replace("Bearer ", "");
-
-    //check the token is valid
 
     const decode = jwt.verify(token, config.jwt_access_secret as string);
 
