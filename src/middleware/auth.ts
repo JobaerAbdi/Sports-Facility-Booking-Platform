@@ -9,6 +9,7 @@ import config from "../config";
 const auth = (...requiredRoles: TUserRole[]) => {
   return catchAsync(async (req, res, next) => {
     const authToken = req.headers.authorization;
+    // console.log("authToken =>", authToken );
     if (!authToken) {
       throw new AppError(
         httpStatus.UNAUTHORIZED,
@@ -21,6 +22,8 @@ const auth = (...requiredRoles: TUserRole[]) => {
       config.jwt_access_secret as string
     );
 
+    // console.log("decode =>", decode);
+    
     const { email, role } = decode as JwtPayload;
 
     const user = await User.isUserExistsByEmail(email);

@@ -15,10 +15,6 @@ router.post(
   FacilityControllers.createFacility,
 );
 
-router.get(
-    "/", 
-    FacilityControllers.getAllFacilities
-);
 
 router.put(
   "/:id",
@@ -33,4 +29,10 @@ router.delete(
   FacilityControllers.deleteFacility,
 );
 
-export const FacilityRoute = router;
+
+router.get(
+    "/", 
+    FacilityControllers.getAllFacilities
+);
+
+export const FacilityRoutes = router;

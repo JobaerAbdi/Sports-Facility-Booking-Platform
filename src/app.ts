@@ -4,6 +4,7 @@ import globalErrorHandler from "./middleware/globalErrorHandler";
 import { NotFound } from "./error/NotFoundError";
 import cookieParser from "cookie-parser";
 import { AuthRoutes } from "./modules/Auth/auth.route";
+import { FacilityRoutes } from "./modules/Facility/facility.route";
 
 
 const app: Application = express();
@@ -15,7 +16,7 @@ app.use(cookieParser());
 
 
 app.use("/api/auth", AuthRoutes)
-// app.use("/api/auth", AuthRoutes)
+app.use("/api/facility", FacilityRoutes)
 
 
 app.get("/", (req: Request, res: Response) => {

@@ -13,15 +13,7 @@ const createFacility = catchAsync(async (req, res) => {
   });
 });
 
-const getAllFacilities = catchAsync(async (req, res) => {
-  const result = await FacilityServices.getAllFacilities();
-  sendResponse(res, {
-    success: true,
-    message: "Facilities retrieved successfully",
-    data: result,
-    statusCode: httpStatus.OK,
-  });
-});
+
 
 const updateFacility = catchAsync(async (req, res) => {
   const { id } = req.params;
@@ -45,9 +37,19 @@ const deleteFacility = catchAsync(async (req, res) => {
   });
 });
 
+const getAllFacilities = catchAsync(async (req, res) => {
+    const result = await FacilityServices.getAllFacilities();
+    sendResponse(res, {
+      success: true,
+      message: "Facilities retrieved successfully",
+      data: result,
+      statusCode: httpStatus.OK,
+    });
+  });
+
 export const FacilityControllers = {
   createFacility,
-  getAllFacilities,
   updateFacility,
   deleteFacility,
+  getAllFacilities
 };

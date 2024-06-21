@@ -9,11 +9,6 @@ const createFacility = async (payload: TFacility) => {
   return result;
 };
 
-const getAllFacilities = async () => {
-  const result = await Facility.find({});
-  return result;
-};
-
 const updateFacility = async (id: string, payload: Partial<TFacility>) => {
   const facility = await Facility.findById(id);
 
@@ -21,7 +16,11 @@ const updateFacility = async (id: string, payload: Partial<TFacility>) => {
     throw new AppError(httpStatus.NOT_FOUND, "No Data Found");
   }
 
-  const result = await Facility.findByIdAndUpdate(id, payload, { new: true });
+  const result = await Facility.findByIdAndUpdate(
+    id, 
+    payload, 
+    { new: true }
+  );
   return result;
 };
 
@@ -40,9 +39,14 @@ const deleteFacility = async (id: string) => {
   return result;
 };
 
+const getAllFacilities = async () => {
+  const result = await Facility.find({});
+  return result;
+};
+
 export const FacilityServices = {
   createFacility,
-  getAllFacilities,
   updateFacility,
   deleteFacility,
+  getAllFacilities,
 };
