@@ -1,8 +1,10 @@
 import httpStatus from "http-status";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import config from "../config";
 import catchAsync from "../utils/asyncHandler";
 import AppError from "../error/AppErrors";
+import { TUserRole } from "../modules/User/user.interface";
+import { User } from "../modules/User/user.model";
+import config from "../config";
 
 const auth = (...requiredRoles: TUserRole[]) => {
   return catchAsync(async (req, res, next) => {
@@ -15,7 +17,9 @@ const auth = (...requiredRoles: TUserRole[]) => {
     }
     const token = authToken.replace("Bearer ", "");
 
-    const decode = jwt.verify(token, config.jwt_access_secret as string);
+    const decode = jwt.verify(token, 
+      config.jwt_access_secret as string
+    );
 
     const { email, role } = decode as JwtPayload;
 
